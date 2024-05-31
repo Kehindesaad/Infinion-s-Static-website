@@ -25,7 +25,7 @@
 
 ![Networking](./Images/Networking.png)
 
-- Click on create virtual network
+- Click on create virtual network.
 
 ![Create-VN](./Images/Create-VN.png)
 
