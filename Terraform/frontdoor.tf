@@ -1,11 +1,11 @@
-resource "azurerm_resource_group" "example" {
-  name     = "FrontDoorExampleResourceGroup"
-  location = "West Europe"
+data "azurerm_resource_group" "kehinderg" {
+  name     = "kehinderg"
+  location = "East US"
 }
 
-resource "azurerm_frontdoor" "example" {
-  name                = "example-FrontDoor"
-  resource_group_name = azurerm_resource_group.example.name
+resource "azurerm_frontdoor" "DemoFD" {
+  name                = "DemoFD"
+  resource_group_name = azurerm_resource_group.kehinderg.name
 
   routing_rule {
     name               = "exampleRoutingRule1"
@@ -29,8 +29,8 @@ resource "azurerm_frontdoor" "example" {
   backend_pool {
     name = "exampleBackendBing"
     backend {
-      host_header = azurerm_public_ip.example.ip_address
-      address     = azurerm_public_ip.example.ip_address
+      host_header = azurerm_public_ip.Demo-IP.ip_address
+      address     = azurerm_public_ip.Demo-IP.ip_address
       http_port   = 80
       https_port  = 443
     }
@@ -41,6 +41,6 @@ resource "azurerm_frontdoor" "example" {
 
   frontend_endpoint {
     name      = "exampleFrontendEndpoint1"
-    host_name = "${azurerm_frontdoor.example.name}.azurefd.net"
+    host_name = "${azurerm_frontdoor.DemoFD.name}.azurefd.net"
   }
 }
